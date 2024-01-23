@@ -1,13 +1,13 @@
 import FilterView from '../view/filter-view.js';
 import SortView from '../view/sort-view.js';
 import ListView from '../view/list-view.js';
+import AddPointView from '../view/add-point-view.js';
 import PointView from '../view/point-view.js';
-import EditPointView from '../view/editing-form';
 import { render } from '../render.js';
 
-const POINTS_COUNT = 3;
+const POINT_COUNT = 3;
 
-export default class TripListPresenter {
+export class TripBoardPresenter {
   tripListComponent = new ListView();
 
   constructor(listContainer, filterContainer) {
@@ -19,10 +19,9 @@ export default class TripListPresenter {
     render(new FilterView(), this.filterContainer);
     render(new SortView(), this.listContainer);
     render(this.tripListComponent, this.listContainer);
+    render(new AddPointView(), this.tripListComponent.getElement());
 
-    render(new EditPointView(), this.tripListComponent.getElement());
-
-    for (let i = 0; i < POINTS_COUNT; i++) {
+    for (let i = 0; i < POINT_COUNT; i++) {
       render(new PointView(), this.tripListComponent.getElement());
     }
   }
